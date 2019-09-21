@@ -40,9 +40,10 @@ class FooterView: UIView {
     }
 
     private func makeButtonWith(image: UIImage?, selector: Selector) -> UIButton {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setImage(image?.withRenderingMode(.alwaysTemplate), for: .normal)
         button.tintColor = R.color.textGrayColor()
+        button.addTarget(self, action: selector, for: .touchUpInside)
         return button
     }
     
