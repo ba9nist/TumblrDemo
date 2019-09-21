@@ -9,21 +9,25 @@
 /* Begin PBXBuildFile section */
 		1F4681B75B72E76AD0231983 /* Pods_TumblrDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25066A2A9EF012D722C7C32B /* Pods_TumblrDemo.framework */; };
 		57072EFA2334B96A009F2DF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57072EF92334B96A009F2DF3 /* AppDelegate.swift */; };
-		57072EFC2334B96A009F2DF3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57072EFB2334B96A009F2DF3 /* ViewController.swift */; };
-		57072EFF2334B96A009F2DF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57072EFD2334B96A009F2DF3 /* Main.storyboard */; };
 		57072F012334B96C009F2DF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57072F002334B96C009F2DF3 /* Assets.xcassets */; };
 		57072F042334B96C009F2DF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57072F022334B96C009F2DF3 /* LaunchScreen.storyboard */; };
+		9F42FD4D23364577005D2F4D /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F42FD4C23364577005D2F4D /* FooterView.swift */; };
+		9F42FD5023364824005D2F4D /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F42FD4F23364824005D2F4D /* R.generated.swift */; };
+		9F42FD53233649D5005D2F4D /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F42FD52233649D5005D2F4D /* Colors.xcassets */; };
+		9F42FD5623364AF6005D2F4D /* PostsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F42FD5523364AF6005D2F4D /* PostsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		25066A2A9EF012D722C7C32B /* Pods_TumblrDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TumblrDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57072EF62334B96A009F2DF3 /* TumblrDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TumblrDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57072EF92334B96A009F2DF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		57072EFB2334B96A009F2DF3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		57072EFE2334B96A009F2DF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		57072F002334B96C009F2DF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57072F032334B96C009F2DF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57072F052334B96C009F2DF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F42FD4C23364577005D2F4D /* FooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		9F42FD4F23364824005D2F4D /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		9F42FD52233649D5005D2F4D /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		9F42FD5523364AF6005D2F4D /* PostsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsController.swift; sourceTree = "<group>"; };
 		A91AF3A2B0094C6EF0407F72 /* Pods-TumblrDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TumblrDemo.debug.xcconfig"; path = "Target Support Files/Pods-TumblrDemo/Pods-TumblrDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C4345F5DB048E77EE12FF050 /* Pods-TumblrDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TumblrDemo.release.xcconfig"; path = "Target Support Files/Pods-TumblrDemo/Pods-TumblrDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,14 +73,64 @@
 		57072EF82334B96A009F2DF3 /* TumblrDemo */ = {
 			isa = PBXGroup;
 			children = (
+				9F42FD512336495D005D2F4D /* Resources */,
+				9F42FD4E233647F3005D2F4D /* auto-generated */,
+				9F42FD4A23364415005D2F4D /* UI */,
+				9F42FD492336440F005D2F4D /* Business */,
 				57072EF92334B96A009F2DF3 /* AppDelegate.swift */,
-				57072EFB2334B96A009F2DF3 /* ViewController.swift */,
-				57072EFD2334B96A009F2DF3 /* Main.storyboard */,
-				57072F002334B96C009F2DF3 /* Assets.xcassets */,
 				57072F022334B96C009F2DF3 /* LaunchScreen.storyboard */,
 				57072F052334B96C009F2DF3 /* Info.plist */,
 			);
 			path = TumblrDemo;
+			sourceTree = "<group>";
+		};
+		9F42FD492336440F005D2F4D /* Business */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Business;
+			sourceTree = "<group>";
+		};
+		9F42FD4A23364415005D2F4D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				9F42FD5423364AC7005D2F4D /* Controllers */,
+				9F42FD4B2336442F005D2F4D /* Views */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		9F42FD4B2336442F005D2F4D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9F42FD4C23364577005D2F4D /* FooterView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9F42FD4E233647F3005D2F4D /* auto-generated */ = {
+			isa = PBXGroup;
+			children = (
+				9F42FD4F23364824005D2F4D /* R.generated.swift */,
+			);
+			path = "auto-generated";
+			sourceTree = "<group>";
+		};
+		9F42FD512336495D005D2F4D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				57072F002334B96C009F2DF3 /* Assets.xcassets */,
+				9F42FD52233649D5005D2F4D /* Colors.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9F42FD5423364AC7005D2F4D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9F42FD5523364AF6005D2F4D /* PostsController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		A3228434526D810824E49598 /* Pods */ = {
@@ -149,9 +203,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F42FD53233649D5005D2F4D /* Colors.xcassets in Resources */,
 				57072F042334B96C009F2DF3 /* LaunchScreen.storyboard in Resources */,
 				57072F012334B96C009F2DF3 /* Assets.xcassets in Resources */,
-				57072EFF2334B96A009F2DF3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,22 +277,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57072EFC2334B96A009F2DF3 /* ViewController.swift in Sources */,
 				57072EFA2334B96A009F2DF3 /* AppDelegate.swift in Sources */,
+				9F42FD5623364AF6005D2F4D /* PostsController.swift in Sources */,
+				9F42FD4D23364577005D2F4D /* FooterView.swift in Sources */,
+				9F42FD5023364824005D2F4D /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		57072EFD2334B96A009F2DF3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				57072EFE2334B96A009F2DF3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		57072F022334B96C009F2DF3 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -374,6 +422,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K442HVBABN;
 				INFOPLIST_FILE = TumblrDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -393,6 +442,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K442HVBABN;
 				INFOPLIST_FILE = TumblrDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
