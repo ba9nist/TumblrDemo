@@ -8,4 +8,5 @@ target 'TumblrDemo' do
   # Pods for TumblrDemo
   pod 'Alamofire'
   pod 'AlamofireImage'
+  pod 'R.swift'
 end
