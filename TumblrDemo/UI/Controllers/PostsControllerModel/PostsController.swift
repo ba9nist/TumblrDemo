@@ -56,9 +56,17 @@ class PostsController: BaseViewController {
     private func setupView() {
         view.backgroundColor = R.color.backgroundColor()
         navigationController?.navigationBar.barTintColor = R.color.backgroundColor()
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
+                                                                   NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 21)]
+        navigationController?.navigationBar.barStyle = .blackTranslucent
+        title = "Tumblr"
 
         view.addSubview(collectionView)
-        collectionView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor)
+        collectionView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 
 }
