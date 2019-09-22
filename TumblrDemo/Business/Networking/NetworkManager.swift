@@ -8,10 +8,13 @@
 
 import Foundation
 import Alamofire
+import AlamofireImage
 
 
 class NetworkManager: NSObject {
     private let api_key = "7YIR9ao5keQ1mlSFnGJLMuhWkAyBBTYmMKCaQeniTurRrZUsxh"
+
+    private let cache = NSCache<NSURL, NSData>()
 
     static let shared = NetworkManager()
     override init() {
@@ -22,7 +25,7 @@ class NetworkManager: NSObject {
 //        https://api.tumblr.com/v2/blog/themsleeves.tumblr.com/posts?api_key=7YIR9ao5keQ1mlSFnGJLMuhWkAyBBTYmMKCaQeniTurRrZUsxh
 //        let url = "https://api.tumblr.com/v2/tagged?tag=gif" + "&api_key=\(api_key)"
 
-        let url = "https://api.tumblr.com/v2/blog/themsleeves.tumblr.com/posts?api_key=\(api_key)"
+        let url = "https://api.tumblr.com/v2/blog/themsleeves.tumblr.com/posts?&api_key=\(api_key)"
 
         Alamofire.request(url, method: .get).responseData { (responseData) in
             guard let data = responseData.data else {
@@ -48,6 +51,23 @@ class NetworkManager: NSObject {
         }
     }
 
+
+    func loadImage(url: URL, completion: @escaping (Data?) -> Void) {
+
+        if let imageData = cache.object(forKey: url as NSURL) {
+            completion(imageData as Data)
+            return
+        }
+
+        Alamofire.request(url).responseData { response in
+//            print("finish image request")
+
+            if let imageData =  response.result.value {
+                self.cache.setObject(imageData as NSData, forKey: url as NSURL)
+            }
+            completion(response.result.value)
+        }
+    }
 
 }
 

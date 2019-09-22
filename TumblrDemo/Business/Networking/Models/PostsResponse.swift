@@ -54,8 +54,24 @@ struct PhotoInfo: Decodable {
 }
 
 struct Trail: Decodable {
-    var content_raw: String
-    //var blog: BLOG with theme
+//var blog: BLOG with theme
+    var content: NSAttributedString = NSAttributedString(string: "")
+
+    enum CodingKeys: String, CodingKey {
+        case content
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        let htmlText = try container.decode(String.self, forKey: .content)
+
+        if let htmlData = htmlText.data(using: .utf16) {
+            content = try NSAttributedString(data: htmlData, options: [NSAttributedString.DocumentReadingOptionKey.documentType : NSAttributedString.DocumentType.html], documentAttributes: nil)
+        }
+
+    }
+
 }
 
 struct PostsResponse: Decodable {

@@ -31,7 +31,9 @@ class PostsController: BaseViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.prefetchDataSource = self
         collectionView.backgroundColor = .clear
+        collectionView.contentInset = .zero
 
         collectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCellConfigurator.reuseIdentifier)
         collectionView.register(PostCollectionViewCell.self, forCellWithReuseIdentifier: PostCellConfigurator.reuseIdentifier)
@@ -53,29 +55,10 @@ class PostsController: BaseViewController {
 
     private func setupView() {
         view.backgroundColor = R.color.backgroundColor()
+        navigationController?.navigationBar.barTintColor = R.color.backgroundColor()
 
         view.addSubview(collectionView)
         collectionView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor)
-
-//        let testView = PostHeaderView()
-//        let testView1 = FooterView()
-//
-//        view.addSubview(testView)
-//        view.addSubview(testView1)
-//        testView.translatesAutoresizingMaskIntoConstraints = false
-//
-//        testView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-//        testView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
-//        testView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-//        testView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-//
-//        testView1.translatesAutoresizingMaskIntoConstraints = false
-//
-//        testView1.topAnchor.constraint(equalTo: testView.bottomAnchor, constant: 0).isActive = true
-//        testView1.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
-//        testView1.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-//        testView1.heightAnchor.constraint(equalToConstant: 50).isActive = true
-
     }
 
 }
@@ -100,7 +83,6 @@ extension PostsController: UICollectionViewDataSource {
 extension PostsController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let item = model.posts[indexPath.item]
-
         return CGSize(width: collectionView.frame.width, height: item.calculateHeight(width: collectionView.frame.width))
     }
 }
@@ -111,6 +93,13 @@ extension PostsController: PostsControllerViewProcotol {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
+    }
+
+}
+
+extension PostsController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        
     }
 
 }

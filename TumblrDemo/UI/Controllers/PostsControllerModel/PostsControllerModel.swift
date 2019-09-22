@@ -6,10 +6,10 @@
 //  Copyright © 2019 Home. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 typealias PostCellConfigurator = CollectionViewConfigurator<PostCollectionViewCell, Post>
-typealias ImageCellConfigurator = CollectionViewConfigurator<ImageCollectionViewCell, UIImage>
+typealias ImageCellConfigurator = CollectionViewConfigurator<ImageCollectionViewCell, URL>
 
 class PostsControllerModel {
 
@@ -19,22 +19,23 @@ class PostsControllerModel {
     func loadData() {
         view?.showLoader()
         NetworkManager.shared.sendRequest { (response) in
-            self.view?.hideLoader()
+
             guard let response = response else {
+                self.view?.hideLoader()
                 return
             }
-
 
             let mappedPosts = response.posts.map({ (post) -> CellConfigurator in
                 return PostCellConfigurator(item: post)
             })
 
             self.posts = [CellConfigurator]()
-            self.posts.append(ImageCellConfigurator(item: #imageLiteral(resourceName: "photo")))
             self.posts.append(contentsOf: mappedPosts)
 
+            self.view?.hideLoader()
+
             self.view?.updateTable()
-//            response.posts.forEach({print($0.photoset_layout)})
+            response.posts.forEach({print("type: \($0.type)  layout: \($0.photoset_layout)")})
         }
     }
 
