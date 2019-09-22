@@ -16,9 +16,9 @@ class PostsControllerModel {
     var posts = [CellConfigurator]()
     var view: PostsControllerViewProcotol?
 
-    func loadData() {
+    func fetchPosts(offset: Int = 0) {
         view?.showLoader()
-        NetworkManager.shared.sendRequest { (response) in
+        NetworkManager.shared.sendRequest(offset: offset) { (response) in
 
             guard let response = response else {
                 self.view?.hideLoader()
@@ -29,15 +29,15 @@ class PostsControllerModel {
                 return PostCellConfigurator(item: post)
             })
 
-            self.posts = [CellConfigurator]()
             self.posts.append(contentsOf: mappedPosts)
 
             self.view?.hideLoader()
 
             self.view?.updateTable()
-            response.posts.forEach({print("type: \($0.type)  layout: \($0.photoset_layout)")})
+//            response.posts.forEach({print("type: \($0.type)  layout: \($0.photoset_layout)")})
         }
     }
+
 
 
 }

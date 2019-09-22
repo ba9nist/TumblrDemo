@@ -21,11 +21,11 @@ class NetworkManager: NSObject {
         super.init()
     }
 
-    func sendRequest(completion: @escaping (PostsResponse?) -> Void) {
+    func sendRequest(offset: Int, completion: @escaping (PostsResponse?) -> Void) {
 //        https://api.tumblr.com/v2/blog/themsleeves.tumblr.com/posts?api_key=7YIR9ao5keQ1mlSFnGJLMuhWkAyBBTYmMKCaQeniTurRrZUsxh
 //        let url = "https://api.tumblr.com/v2/tagged?tag=gif" + "&api_key=\(api_key)"
 
-        let url = "https://api.tumblr.com/v2/blog/themsleeves.tumblr.com/posts?&api_key=\(api_key)"
+        let url = "https://api.tumblr.com/v2/blog/themsleeves.tumblr.com/posts?offset=\(offset)&api_key=\(api_key)"
 
         Alamofire.request(url, method: .get).responseData { (responseData) in
             guard let data = responseData.data else {
