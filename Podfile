@@ -9,4 +9,5 @@ target 'TumblrDemo' do
   pod 'Alamofire'
   pod 'AlamofireImage'
   pod 'R.swift'
+  pod 'BLMultiColorLoader'
 end
