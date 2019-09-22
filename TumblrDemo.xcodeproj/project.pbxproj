@@ -17,6 +17,8 @@
 		9F42FD5623364AF6005D2F4D /* PostsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F42FD5523364AF6005D2F4D /* PostsController.swift */; };
 		9F42FD5823364D3D005D2F4D /* PostHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F42FD5723364D3D005D2F4D /* PostHeaderView.swift */; };
 		9F42FD5B23366859005D2F4D /* UIView + Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F42FD5A23366859005D2F4D /* UIView + Layout.swift */; };
+		9F42FD602336A38F005D2F4D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F42FD5F2336A38F005D2F4D /* NetworkManager.swift */; };
+		9F42FD632336A47B005D2F4D /* PostsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F42FD622336A47B005D2F4D /* PostsResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		9F42FD5523364AF6005D2F4D /* PostsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsController.swift; sourceTree = "<group>"; };
 		9F42FD5723364D3D005D2F4D /* PostHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostHeaderView.swift; sourceTree = "<group>"; };
 		9F42FD5A23366859005D2F4D /* UIView + Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Layout.swift"; sourceTree = "<group>"; };
+		9F42FD5F2336A38F005D2F4D /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		9F42FD622336A47B005D2F4D /* PostsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsResponse.swift; sourceTree = "<group>"; };
 		A91AF3A2B0094C6EF0407F72 /* Pods-TumblrDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TumblrDemo.debug.xcconfig"; path = "Target Support Files/Pods-TumblrDemo/Pods-TumblrDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C4345F5DB048E77EE12FF050 /* Pods-TumblrDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TumblrDemo.release.xcconfig"; path = "Target Support Files/Pods-TumblrDemo/Pods-TumblrDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +95,7 @@
 		9F42FD492336440F005D2F4D /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				9F42FD5E2336A36D005D2F4D /* Networking */,
 			);
 			path = Business;
 			sourceTree = "<group>";
@@ -145,6 +150,23 @@
 				9F42FD5A23366859005D2F4D /* UIView + Layout.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		9F42FD5E2336A36D005D2F4D /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				9F42FD612336A43D005D2F4D /* Models */,
+				9F42FD5F2336A38F005D2F4D /* NetworkManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		9F42FD612336A43D005D2F4D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9F42FD622336A47B005D2F4D /* PostsResponse.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		A3228434526D810824E49598 /* Pods */ = {
@@ -294,8 +316,10 @@
 				57072EFA2334B96A009F2DF3 /* AppDelegate.swift in Sources */,
 				9F42FD5823364D3D005D2F4D /* PostHeaderView.swift in Sources */,
 				9F42FD5623364AF6005D2F4D /* PostsController.swift in Sources */,
+				9F42FD602336A38F005D2F4D /* NetworkManager.swift in Sources */,
 				9F42FD4D23364577005D2F4D /* FooterView.swift in Sources */,
 				9F42FD5B23366859005D2F4D /* UIView + Layout.swift in Sources */,
+				9F42FD632336A47B005D2F4D /* PostsResponse.swift in Sources */,
 				9F42FD5023364824005D2F4D /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

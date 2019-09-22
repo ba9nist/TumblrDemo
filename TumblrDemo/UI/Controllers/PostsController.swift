@@ -10,10 +10,26 @@ import UIKit
 
 class PostsController: UIViewController {
 
+    var posts = [Post]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        NetworkManager.shared.sendRequest { (response) in
+            guard let response = response else {
+                return
+            }
+
+            self.posts = response.posts
+
+            response.posts.forEach({print($0.photoset_layout)})
+        }
     }
 
     private func setupView() {
