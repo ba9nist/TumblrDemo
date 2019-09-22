@@ -28,8 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func makeInitialController() -> UIViewController {
         let controller = PostsController()
-//        let controller = ViewController()
-//        controller.view.backgroundColor = .white
 
         return UINavigationController(rootViewController: controller)
     }

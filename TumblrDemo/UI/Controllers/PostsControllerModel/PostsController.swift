@@ -107,7 +107,6 @@ extension PostsController: PostsControllerViewProcotol {
 
 extension PostsController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        print(indexPaths)
         if let path = indexPaths.last, path.row == model.posts.count - 3 {
             model.fetchPosts(offset: model.posts.count)
         }

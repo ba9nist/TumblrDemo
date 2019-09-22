@@ -14,12 +14,12 @@ struct Meta: Decodable {
 }
 
 struct Blog: Decodable {
-    var description: String
+    var description: String?
     var name: String
-    var title: String
-    var url: URL
-    var uuid: String
-    var updated: Int64
+    var title: String?
+    var url: URL?
+    var uuid: String?
+    var updated: Int64?
 }
 
 struct Post: Decodable {
@@ -56,9 +56,11 @@ struct PhotoInfo: Decodable {
 struct Trail: Decodable {
 //var blog: BLOG with theme
     var content: NSAttributedString = NSAttributedString(string: "")
+    var blog: Blog?
 
     enum CodingKeys: String, CodingKey {
         case content
+        case blog
     }
 
     init(from decoder: Decoder) throws {
@@ -69,6 +71,8 @@ struct Trail: Decodable {
         if let htmlData = htmlText.data(using: .utf16) {
             content = try NSAttributedString(data: htmlData, options: [NSAttributedString.DocumentReadingOptionKey.documentType : NSAttributedString.DocumentType.html], documentAttributes: nil)
         }
+
+        blog = try container.decode(Blog.self, forKey: .blog)
 
     }
 

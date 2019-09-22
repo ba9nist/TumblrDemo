@@ -34,7 +34,7 @@ class PostsControllerModel {
             self.view?.hideLoader()
 
             self.view?.updateTable()
-//            response.posts.forEach({print("type: \($0.type)  layout: \($0.photoset_layout)")})
+            response.posts.forEach({print("type: \($0.type)  layout: \($0.trail?.first?.blog)")})
         }
     }
 
