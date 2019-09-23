@@ -78,15 +78,17 @@ struct Trail: Decodable {
 
 }
 
+typealias TagsResponse = [Post]
+
 struct PostsResponse: Decodable {
-    var blog: Blog
-    var posts: [Post]
-    var total_posts: Int
+    var blog: Blog?
+    var posts: [Post] = [Post]()
+    var total_posts: Int = 0
     //_links
 }
 
-struct Response: Decodable {
+struct TumblrResponse<T: Decodable>: Decodable {
     var meta: Meta
-    var response: PostsResponse
+    var response: T
 
 }

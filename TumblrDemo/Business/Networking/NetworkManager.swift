@@ -10,8 +10,9 @@ import Foundation
 import Alamofire
 import AlamofireImage
 
-
 class NetworkManager: NSObject {
+
+
     private let api_key = "7YIR9ao5keQ1mlSFnGJLMuhWkAyBBTYmMKCaQeniTurRrZUsxh"
 
     private let cache = NSCache<NSURL, NSData>()
@@ -21,33 +22,49 @@ class NetworkManager: NSObject {
         super.init()
     }
 
-    func sendRequest(offset: Int, completion: @escaping (PostsResponse?) -> Void) {
-//        https://api.tumblr.com/v2/blog/themsleeves.tumblr.com/posts?api_key=7YIR9ao5keQ1mlSFnGJLMuhWkAyBBTYmMKCaQeniTurRrZUsxh
-//        let url = "https://api.tumblr.com/v2/tagged?tag=gif" + "&api_key=\(api_key)"
 
-        let url = "https://api.tumblr.com/v2/blog/themsleeves.tumblr.com/posts?offset=\(offset)&api_key=\(api_key)"
+    func processResponse() {
+    }
 
-        Alamofire.request(url, method: .get).responseData { (responseData) in
-            guard let data = responseData.data else {
-                print("error getting data")
-                completion(nil)
-                return
-//                completion(nil, NSError(domain: "test", code: 666, userInfo: [NSErrorDescripti]))
-            }
 
-            do {
+    func sendRequest<T>(model: BaseRequestModel, handler: T, completion: @escaping (T?, Error?) -> Void) where T: Decodable {
 
-                let response = try JSONDecoder().decode(Response.self, from: data)
-                completion(response.response)
-//                print(response)
-//                for post in response.response {
-//                    print("name = \(post.blog.name) type = \(post.type)")
+        Alamofire.request(model.getUrl(), method: .get)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseData { response in
+
+                switch response.result {
+                case .success:
+                    print("success")
+                    if let data = response.data {
+                        do {
+
+                            let result = try JSONDecoder().decode(TumblrResponse<T>.self, from: data)
+                            completion(result.response as T, nil)
+//                            print(result.response)
+//                            print(result.response.posts)
+//                            completion(result.response, nil)
+                        } catch {
+                            print("decoding error")
+                            completion(nil, error)
+                        }
+                    }
+//                    self.processResponse()
+//                    processResponse(response)
+//                    let result = try JSONDecoder().decode(Response.self, from: data)
+//                    completion(response.response)
+                case let .failure(error):
+                    completion(nil, error)
+                }
+
+//                do {
+//
+//
+//                } catch {
+//                    print(error)
+//                    completion(nil)
 //                }
-
-            } catch {
-                print(error)
-                completion(nil)
-            }
         }
     }
 

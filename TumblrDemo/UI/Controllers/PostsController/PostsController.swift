@@ -13,6 +13,7 @@ protocol PostsControllerViewProcotol {
     func showLoader()
     func hideLoader()
     func updateTable()
+    func showError(message: String)
 
 }
 
@@ -41,6 +42,15 @@ class PostsController: BaseViewController {
         return collectionView
     }()
 
+    lazy var searchController: UISearchController = {
+        let controller = UISearchController(searchResultsController: nil)
+        controller.searchBar.delegate = self
+        controller.obscuresBackgroundDuringPresentation = false
+        controller.searchBar.placeholder = NSLocalizedString("Search Posts", comment: "SearchController placeholder")
+
+        return controller
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -55,14 +65,22 @@ class PostsController: BaseViewController {
 
     private func setupView() {
         view.backgroundColor = R.color.backgroundColor()
+        setupNavigationBar()
+
+        view.addSubview(collectionView)
+        collectionView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
+    }
+
+    private func setupNavigationBar() {
+        title = "Tumblr"
+
         navigationController?.navigationBar.barTintColor = R.color.backgroundColor()
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
                                                                    NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 21)]
         navigationController?.navigationBar.barStyle = .blackTranslucent
-        title = "Tumblr"
-
-        view.addSubview(collectionView)
-        collectionView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
+        definesPresentationContext = true
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -96,6 +114,10 @@ extension PostsController: UICollectionViewDelegateFlowLayout {
 }
 
 extension PostsController: PostsControllerViewProcotol {
+    func showError(message: String) {
+        
+    }
+
 
     func updateTable() {
         DispatchQueue.main.async {
@@ -103,13 +125,23 @@ extension PostsController: PostsControllerViewProcotol {
         }
     }
 
+
+
 }
 
 extension PostsController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        if let path = indexPaths.last, path.row == model.posts.count - 3 {
-            model.fetchPosts(offset: model.posts.count)
+        if let path = indexPaths.last, path.item == model.posts.count - 3 {
+            model.fetchPosts(offset: model.posts.count, silentLoad: true)
         }
     }
 
+}
+
+extension PostsController: UISearchBarDelegate {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        if let text = searchController.searchBar.text {
+            model.fetchPosts(by: text)
+        }
+    }
 }

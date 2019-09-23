@@ -26,6 +26,9 @@
 		9FD60596233930600045A134 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD60592233930600045A134 /* ImageCollectionViewCell.swift */; };
 		9FD60597233930600045A134 /* CellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD60593233930600045A134 /* CellConfigurator.swift */; };
 		9FD60598233930600045A134 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD60595233930600045A134 /* PostCollectionViewCell.swift */; };
+		9FD6059A233943430045A134 /* RequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD60599233943430045A134 /* RequestModel.swift */; };
+		9FD6059C2339506B0045A134 /* NSError+EasyInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD6059B2339506B0045A134 /* NSError+EasyInit.swift */; };
+		9FD6059E233952C80045A134 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD6059D233952C80045A134 /* UIViewController+Alert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		9FD60592233930600045A134 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		9FD60593233930600045A134 /* CellConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellConfigurator.swift; sourceTree = "<group>"; };
 		9FD60595233930600045A134 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
+		9FD60599233943430045A134 /* RequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestModel.swift; sourceTree = "<group>"; };
+		9FD6059B2339506B0045A134 /* NSError+EasyInit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+EasyInit.swift"; sourceTree = "<group>"; };
+		9FD6059D233952C80045A134 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		A91AF3A2B0094C6EF0407F72 /* Pods-TumblrDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TumblrDemo.debug.xcconfig"; path = "Target Support Files/Pods-TumblrDemo/Pods-TumblrDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C4345F5DB048E77EE12FF050 /* Pods-TumblrDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TumblrDemo.release.xcconfig"; path = "Target Support Files/Pods-TumblrDemo/Pods-TumblrDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -164,6 +170,8 @@
 		9F42FD5923366849005D2F4D /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				9FD6059D233952C80045A134 /* UIViewController+Alert.swift */,
+				9FD6059B2339506B0045A134 /* NSError+EasyInit.swift */,
 				9F42FD5A23366859005D2F4D /* UIView + Layout.swift */,
 			);
 			path = Extension;
@@ -182,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				9F42FD622336A47B005D2F4D /* PostsResponse.swift */,
+				9FD60599233943430045A134 /* RequestModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -373,13 +382,16 @@
 				9F42FD5623364AF6005D2F4D /* PostsController.swift in Sources */,
 				9FD60598233930600045A134 /* PostCollectionViewCell.swift in Sources */,
 				9F42FD602336A38F005D2F4D /* NetworkManager.swift in Sources */,
+				9FD6059A233943430045A134 /* RequestModel.swift in Sources */,
 				9F42FD4D23364577005D2F4D /* FooterView.swift in Sources */,
+				9FD6059E233952C80045A134 /* UIViewController+Alert.swift in Sources */,
 				9F42FD6823374BA0005D2F4D /* BaseViewController.swift in Sources */,
 				9F42FD5B23366859005D2F4D /* UIView + Layout.swift in Sources */,
 				9F42FD632336A47B005D2F4D /* PostsResponse.swift in Sources */,
 				9FD6058C2337D81B0045A134 /* PhotosGridView.swift in Sources */,
 				9F42FD5023364824005D2F4D /* R.generated.swift in Sources */,
 				9FD60597233930600045A134 /* CellConfigurator.swift in Sources */,
+				9FD6059C2339506B0045A134 /* NSError+EasyInit.swift in Sources */,
 				9F42FD6623374A5F005D2F4D /* PostsControllerModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

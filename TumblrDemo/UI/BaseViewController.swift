@@ -44,7 +44,7 @@ class BaseViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if shadowView.isHidden == false {
+        if !shadowView.isHidden {
             loader.startAnimation()
         }
     }
@@ -65,6 +65,7 @@ class BaseViewController: UIViewController {
 
     func showLoader() {
         DispatchQueue.main.async {
+            self.view.bringSubviewToFront(self.shadowView)
             self.shadowView.isHidden = false
             self.loader.isHidden = false
             self.loader.startAnimation()
