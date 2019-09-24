@@ -43,6 +43,10 @@ class ImageCollectionViewCell: UICollectionViewCell, ConfigurableCell {
 
     }
 
+    func configure(delegate: ImageCellDelegate?) {
+
+    }
+
     private func setupView() {
         addSubview(imageView)
 

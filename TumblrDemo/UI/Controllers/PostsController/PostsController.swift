@@ -99,10 +99,12 @@ extension PostsController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let item = model.posts[indexPath.item]
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type(of: item).reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type(of: item).reuseIdentifier, for: indexPath) as! PostCollectionViewCell
 
         cell.backgroundColor = .white
         item.configure(cell: cell)
+        cell.delegate = self
+        cell.tag = indexPath.row
 
         return cell
     }
@@ -151,4 +153,17 @@ extension PostsController: UISearchBarDelegate {
             model.fetchPosts(by: text)
         }
     }
+}
+
+extension PostsController: PostCellDelegate {
+
+
+    func didClickHeader(_ cell: PostCollectionViewCell) {
+        print("didClickHeader tag = \(cell.tag)")
+        if let blog = model.getBlog(by: cell.tag) {
+            print(blog.name)
+        }
+
+    }
+
 }

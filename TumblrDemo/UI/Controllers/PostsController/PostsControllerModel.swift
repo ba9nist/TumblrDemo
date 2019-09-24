@@ -8,14 +8,19 @@
 
 import Foundation
 
-typealias PostCellConfigurator = CollectionViewConfigurator<PostCollectionViewCell, Post>
-typealias ImageCellConfigurator = CollectionViewConfigurator<ImageCollectionViewCell, URL>
+protocol ImageCellDelegate {
+    
+}
+
+typealias PostCellConfigurator = CollectionViewConfigurator<PostCollectionViewCell, Post, PostCellDelegate>
+typealias ImageCellConfigurator = CollectionViewConfigurator<ImageCollectionViewCell, URL, ImageCellDelegate>
 
 class PostsControllerModel {
 
     var posts = [CellConfigurator]()
     var view: PostsControllerViewProcotol?
 
+    private var rawPosts = [Post]()
     private var searchModel: String = "gif"
     private var lastPostTimestamp: Int = 0
 
@@ -47,6 +52,7 @@ class PostsControllerModel {
 
             if !appending {
                 self.posts = [CellConfigurator]()
+                self.rawPosts = [Post]()
             }
 
             self.lastPostTimestamp = postList[postList.count - 1].timestamp
@@ -57,6 +63,7 @@ class PostsControllerModel {
 
             let previoutPostsCount = self.posts.count
             self.posts.append(contentsOf: mappedPosts)
+            self.rawPosts.append(contentsOf: postList)
 
             self.view?.hideLoader()
 
@@ -70,6 +77,12 @@ class PostsControllerModel {
                 self.view?.reloadTable()
             }
         }
+    }
+
+    func getBlog(by index: Int) -> Blog? {
+        let post = rawPosts[index]
+
+        return post.trail?.first?.blog
     }
 
 //    func fetchPosts(by tag: String = "featured") {

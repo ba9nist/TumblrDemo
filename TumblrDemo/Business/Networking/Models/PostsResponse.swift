@@ -13,6 +13,10 @@ struct Meta: Decodable {
     var msg: String
 }
 
+struct Theme: Decodable {
+    
+}
+
 struct Blog: Decodable {
     var description: String?
     var name: String
@@ -20,6 +24,8 @@ struct Blog: Decodable {
     var url: URL?
     var uuid: String?
     var updated: Int64?
+
+    var theme: Theme?
 }
 
 struct Post: Decodable {

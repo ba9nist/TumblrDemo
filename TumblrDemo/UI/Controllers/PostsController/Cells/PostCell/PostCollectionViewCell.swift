@@ -8,13 +8,16 @@
 
 import UIKit
 
+protocol PostCellDelegate {
+    func didClickHeader(_ cell: PostCollectionViewCell)
+}
+
 class PostCollectionViewCell: UICollectionViewCell, ConfigurableCell {
 
     let headerView = PostHeaderView()
     let footerView = FooterView()
     let htmlContent = PostHtmlContentView()
     let photosGrid = PhotosGridView()
-
 
     var htmlContentHeightConstraint: NSLayoutConstraint?
     var photosHeightConstraint: NSLayoutConstraint?
@@ -39,6 +42,17 @@ class PostCollectionViewCell: UICollectionViewCell, ConfigurableCell {
 
         footerView.anchor(top: htmlContent.bottomAnchor, left: headerView.leftAnchor, bottom: bottomAnchor, right: headerView.rightAnchor)
 
+    }
+
+    var delegate: PostCellDelegate? {
+        didSet {
+            headerView.delegate = self
+            footerView.delegate = self
+        }
+    }
+
+    func configure(delegate: PostCellDelegate?) {
+        self.delegate = delegate
     }
 
     func configure(data post:  Post) {
@@ -87,5 +101,36 @@ class PostCollectionViewCell: UICollectionViewCell, ConfigurableCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+extension PostCollectionViewCell: PostHeaderViewDelegate {
+    func didClickFollow(_ button: UIButton) {
+
+    }
+
+    func didClickClose(_ button: UIButton) {
+
+    }
+
+    func didClickHeader(_ view: PostHeaderView) {
+        delegate?.didClickHeader(self)
+    }
+
+
+}
+
+extension PostCollectionViewCell: FooterViewDelegate {
+    func didClickLike(_ button: UIButton) {
+
+    }
+
+    func didClickShared(_ button: UIButton) {
+
+    }
+
+    func didClickRepeat(_ button: UIButton) {
+        
+    }
+
 
 }
