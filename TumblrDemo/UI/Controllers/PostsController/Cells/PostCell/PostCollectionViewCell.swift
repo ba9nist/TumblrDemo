@@ -69,7 +69,7 @@ class PostCollectionViewCell: UICollectionViewCell, ConfigurableCell {
         }
 
         if let photos = post.photos {
-            photosGrid.pattern = post.photoset_layout ?? "1"
+            photosGrid.pattern = post.photoset_layout ?? "1" //if have photos and no layout there so show only 1 photo
             photosGrid.images = photos
         }
     }

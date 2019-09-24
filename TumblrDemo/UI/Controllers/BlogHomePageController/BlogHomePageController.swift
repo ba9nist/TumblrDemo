@@ -11,7 +11,11 @@ import UIKit
 class BlogHomePageController: BaseViewController {
     private let reuseIdentifier = "reuseIdentifier"
     private let headerReuseIdentifier = "headerIdentifier"
-    var blog: Blog?
+    var blog: Blog? {
+        didSet {
+            loadAdditionalInfo()
+        }
+    }
 
     private lazy var collectionView: UICollectionView = {
         let layout = StretchHeaderFlowLayout()
@@ -40,7 +44,12 @@ class BlogHomePageController: BaseViewController {
         collectionView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor
             , right: view.rightAnchor)
 
-        view.backgroundColor = .white
+        setupTheme()
+    }
+
+    private func setupTheme() {
+        print(blog?.theme)
+
     }
 
     private func setupNavigation() {
@@ -52,6 +61,10 @@ class BlogHomePageController: BaseViewController {
         self.navigationController?.navigationBar.tintColor = .white
 
     }
+
+    private func loadAdditionalInfo() {
+        
+    }
 }
 
 extension BlogHomePageController: UICollectionViewDelegateFlowLayout {
@@ -60,8 +73,8 @@ extension BlogHomePageController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        print(navigationController?.navigationBar.frame.height)
-        return CGSize(width: collectionView.frame.width, height: 100)
+
+        return CGSize(width: collectionView.frame.width, height: 120)
     }
 }
 
@@ -78,7 +91,9 @@ extension BlogHomePageController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath)
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath) as! StrechyHeaderView
+
+        header.configure(with: blog?.theme)
         return header
     }
 

@@ -17,7 +17,9 @@ struct Theme: Decodable {
     var avatar_shape: String
     var background_color: String
     var body_font: String
-    var headere_image: URL?
+
+    var header_image: URL?
+    var header_full_height: Int?
 }
 
 struct Blog: Decodable {
