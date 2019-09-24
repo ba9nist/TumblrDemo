@@ -92,6 +92,10 @@ struct Trail: Decodable {
 
 typealias TagsResponse = [Post]
 
+struct InfoResponse: Decodable {
+    var blog: Blog?
+}
+
 struct PostsResponse: Decodable {
     var blog: Blog?
     var posts: [Post] = [Post]()

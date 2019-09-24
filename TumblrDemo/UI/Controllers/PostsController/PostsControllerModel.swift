@@ -17,8 +17,8 @@ typealias ImageCellConfigurator = CollectionViewConfigurator<ImageCollectionView
 
 class PostsControllerModel {
 
-    var posts = [CellConfigurator]()
-    var view: PostsControllerViewProcotol?
+    open var posts = [CellConfigurator]()
+    open weak var view: PostsControllerViewProcotol?
 
     private var rawPosts = [Post]()
     private var searchModel: String = "gif"

@@ -56,6 +56,8 @@ class PhotosGridView: UIView {
     open func reset() {
         pattern = ""
         images = [Photo]()
+
+        collectionView.reloadData()
     }
 
     private func mapPatternIntoArray() {

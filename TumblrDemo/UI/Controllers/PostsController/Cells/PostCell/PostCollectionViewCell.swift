@@ -24,6 +24,8 @@ class PostCollectionViewCell: UICollectionViewCell, ConfigurableCell {
 
     private let insets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     private func setupView() {
+        backgroundColor = .white
+
         addSubview(headerView)
         addSubview(footerView)
         addSubview(htmlContent)

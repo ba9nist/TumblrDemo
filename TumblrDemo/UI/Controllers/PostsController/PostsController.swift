@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol PostsControllerViewProcotol {
+protocol PostsControllerViewProcotol: class {
 
     func showLoader()
     func hideLoader()

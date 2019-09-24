@@ -21,6 +21,9 @@ class ImageCollectionViewCell: UICollectionViewCell, ConfigurableCell {
     private var url: URL?
     func configure(data url: URL) {
         self.url = url
+        imageView.image = nil
+        imageView.animatedImage = nil
+
 
         NetworkManager.shared.loadImage(url: url) { (imageData) in
             guard let imageData = imageData else {

@@ -8,28 +8,39 @@
 
 import UIKit
 
+protocol BlogHomePageViewProtocol: class {
+    func reloadTable()
+    func insertItems(_ indexPath: [IndexPath])
+    func showLoader()
+    func hideLoader()
+}
+
 class BlogHomePageController: BaseViewController {
-    private let reuseIdentifier = "reuseIdentifier"
     private let headerReuseIdentifier = "headerIdentifier"
     var blog: Blog? {
         didSet {
-            loadAdditionalInfo()
+            model.blog = blog
         }
     }
 
     private lazy var collectionView: UICollectionView = {
         let layout = StretchHeaderFlowLayout()
-//        layout.headerMinHeight = navigationController?.navigationBar.frame.height ?? 100
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
 
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.backgroundColor = .purple
 
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.backgroundColor = .white
+        collectionView.register(PostCollectionViewCell.self, forCellWithReuseIdentifier: PostCellConfigurator.reuseIdentifier)
         collectionView.register(StrechyHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerReuseIdentifier)
 
         return collectionView
+    }()
+
+    private lazy var model: BlogsHomeModel = {
+        let model = BlogsHomeModel()
+        model.view = self
+        return model
     }()
 
     override func viewDidLoad() {
@@ -48,8 +59,18 @@ class BlogHomePageController: BaseViewController {
     }
 
     private func setupTheme() {
-        print(blog?.theme)
+//        print(blog?.theme)
+        guard let theme = blog?.theme else { return }
 
+        var rawColor = theme.background_color
+        rawColor.remove(at: rawColor.startIndex)
+
+        print("rawColor = \(rawColor)")
+        if let colorInt = Int(rawColor, radix: 16) {
+            print(colorInt)
+            collectionView.backgroundColor = UIColor(hexRgb: colorInt)
+        }
+        
     }
 
     private func setupNavigation() {
@@ -62,22 +83,12 @@ class BlogHomePageController: BaseViewController {
 
     }
 
-    private func loadAdditionalInfo() {
-        if let blogName = blog?.name {
-            
-        }
-
-        if let identifier = blog?.uuid {
-            let infoModel = BlogInfoRequestModel(blogName: identifier)
-
-//            NetworkManager.shared.sendRequest(model: infoModel, handler: <#T##Decodable#>, completion: <#T##(Decodable?, Error?) -> Void#>)
-        }
-    }
 }
 
 extension BlogHomePageController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 200)
+        let item = model.posts[indexPath.item]
+        return CGSize(width: collectionView.frame.width, height: item.calculateHeight(width: collectionView.frame.width))
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -88,12 +99,14 @@ extension BlogHomePageController: UICollectionViewDelegateFlowLayout {
 
 extension BlogHomePageController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return model.posts.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        cell.backgroundColor = .blue
+        let item = model.posts[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type(of: item).reuseIdentifier, for: indexPath)
+
+        item.configure(cell: cell)
 
         return cell
     }
@@ -109,6 +122,21 @@ extension BlogHomePageController: UICollectionViewDataSource {
         let url = URL(string: avatarModel?.getUrl() ?? "")
         header.configure(with: blog?.theme, avatarUrl: url)
         return header
+    }
+
+}
+
+extension BlogHomePageController: BlogHomePageViewProtocol {
+    func reloadTable() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+
+    func insertItems(_ indexPath: [IndexPath]) {
+        DispatchQueue.main.async {
+            self.collectionView.insertItems(at: indexPath)
+        }
     }
 
 }
