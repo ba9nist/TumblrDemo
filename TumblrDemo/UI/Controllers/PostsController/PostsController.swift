@@ -159,9 +159,10 @@ extension PostsController: PostCellDelegate {
 
 
     func didClickHeader(_ cell: PostCollectionViewCell) {
-        print("didClickHeader tag = \(cell.tag)")
         if let blog = model.getBlog(by: cell.tag) {
-            print(blog.name)
+            let blogController = BlogHomePageController()
+            blogController.blog = blog
+            self.navigationController?.pushViewController(blogController, animated: true)
         }
 
     }

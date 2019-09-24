@@ -29,6 +29,7 @@
 		9FD6059A233943430045A134 /* RequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD60599233943430045A134 /* RequestModel.swift */; };
 		9FD6059C2339506B0045A134 /* NSError+EasyInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD6059B2339506B0045A134 /* NSError+EasyInit.swift */; };
 		9FD6059E233952C80045A134 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD6059D233952C80045A134 /* UIViewController+Alert.swift */; };
+		9FD605A1233A0E070045A134 /* BlogHomePageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD605A0233A0E070045A134 /* BlogHomePageController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		9FD60599233943430045A134 /* RequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestModel.swift; sourceTree = "<group>"; };
 		9FD6059B2339506B0045A134 /* NSError+EasyInit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+EasyInit.swift"; sourceTree = "<group>"; };
 		9FD6059D233952C80045A134 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
+		9FD605A0233A0E070045A134 /* BlogHomePageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogHomePageController.swift; sourceTree = "<group>"; };
 		A91AF3A2B0094C6EF0407F72 /* Pods-TumblrDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TumblrDemo.debug.xcconfig"; path = "Target Support Files/Pods-TumblrDemo/Pods-TumblrDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C4345F5DB048E77EE12FF050 /* Pods-TumblrDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TumblrDemo.release.xcconfig"; path = "Target Support Files/Pods-TumblrDemo/Pods-TumblrDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -162,6 +164,7 @@
 		9F42FD5423364AC7005D2F4D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9FD6059F233A0DDF0045A134 /* BlogHomePageController */,
 				9F42FD6423374A3E005D2F4D /* PostsController */,
 			);
 			path = Controllers;
@@ -229,6 +232,14 @@
 				9FD60595233930600045A134 /* PostCollectionViewCell.swift */,
 			);
 			path = PostCell;
+			sourceTree = "<group>";
+		};
+		9FD6059F233A0DDF0045A134 /* BlogHomePageController */ = {
+			isa = PBXGroup;
+			children = (
+				9FD605A0233A0E070045A134 /* BlogHomePageController.swift */,
+			);
+			path = BlogHomePageController;
 			sourceTree = "<group>";
 		};
 		A3228434526D810824E49598 /* Pods */ = {
@@ -391,6 +402,7 @@
 				9FD6058C2337D81B0045A134 /* PhotosGridView.swift in Sources */,
 				9F42FD5023364824005D2F4D /* R.generated.swift in Sources */,
 				9FD60597233930600045A134 /* CellConfigurator.swift in Sources */,
+				9FD605A1233A0E070045A134 /* BlogHomePageController.swift in Sources */,
 				9FD6059C2339506B0045A134 /* NSError+EasyInit.swift in Sources */,
 				9F42FD6623374A5F005D2F4D /* PostsControllerModel.swift in Sources */,
 			);
