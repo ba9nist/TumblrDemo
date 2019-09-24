@@ -30,6 +30,8 @@
 		9FD6059C2339506B0045A134 /* NSError+EasyInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD6059B2339506B0045A134 /* NSError+EasyInit.swift */; };
 		9FD6059E233952C80045A134 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD6059D233952C80045A134 /* UIViewController+Alert.swift */; };
 		9FD605A1233A0E070045A134 /* BlogHomePageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD605A0233A0E070045A134 /* BlogHomePageController.swift */; };
+		9FD605A7233A23050045A134 /* StrechyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD605A6233A23050045A134 /* StrechyHeaderView.swift */; };
+		9FD605AA233A25ED0045A134 /* StretchHeaderFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD605A9233A25ED0045A134 /* StretchHeaderFlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		9FD6059B2339506B0045A134 /* NSError+EasyInit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+EasyInit.swift"; sourceTree = "<group>"; };
 		9FD6059D233952C80045A134 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		9FD605A0233A0E070045A134 /* BlogHomePageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogHomePageController.swift; sourceTree = "<group>"; };
+		9FD605A6233A23050045A134 /* StrechyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrechyHeaderView.swift; sourceTree = "<group>"; };
+		9FD605A9233A25ED0045A134 /* StretchHeaderFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchHeaderFlowLayout.swift; sourceTree = "<group>"; };
 		A91AF3A2B0094C6EF0407F72 /* Pods-TumblrDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TumblrDemo.debug.xcconfig"; path = "Target Support Files/Pods-TumblrDemo/Pods-TumblrDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C4345F5DB048E77EE12FF050 /* Pods-TumblrDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TumblrDemo.release.xcconfig"; path = "Target Support Files/Pods-TumblrDemo/Pods-TumblrDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -237,9 +241,27 @@
 		9FD6059F233A0DDF0045A134 /* BlogHomePageController */ = {
 			isa = PBXGroup;
 			children = (
+				9FD605A8233A25CF0045A134 /* StretchyHeaderFlowLayout */,
+				9FD605A5233A22ED0045A134 /* StrechyHeaderView */,
 				9FD605A0233A0E070045A134 /* BlogHomePageController.swift */,
 			);
 			path = BlogHomePageController;
+			sourceTree = "<group>";
+		};
+		9FD605A5233A22ED0045A134 /* StrechyHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				9FD605A6233A23050045A134 /* StrechyHeaderView.swift */,
+			);
+			path = StrechyHeaderView;
+			sourceTree = "<group>";
+		};
+		9FD605A8233A25CF0045A134 /* StretchyHeaderFlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				9FD605A9233A25ED0045A134 /* StretchHeaderFlowLayout.swift */,
+			);
+			path = StretchyHeaderFlowLayout;
 			sourceTree = "<group>";
 		};
 		A3228434526D810824E49598 /* Pods */ = {
@@ -390,12 +412,14 @@
 				9F42FD7523376ADC005D2F4D /* PostHtmlContentView.swift in Sources */,
 				9FD60596233930600045A134 /* ImageCollectionViewCell.swift in Sources */,
 				9F42FD5823364D3D005D2F4D /* PostHeaderView.swift in Sources */,
+				9FD605A7233A23050045A134 /* StrechyHeaderView.swift in Sources */,
 				9F42FD5623364AF6005D2F4D /* PostsController.swift in Sources */,
 				9FD60598233930600045A134 /* PostCollectionViewCell.swift in Sources */,
 				9F42FD602336A38F005D2F4D /* NetworkManager.swift in Sources */,
 				9FD6059A233943430045A134 /* RequestModel.swift in Sources */,
 				9F42FD4D23364577005D2F4D /* FooterView.swift in Sources */,
 				9FD6059E233952C80045A134 /* UIViewController+Alert.swift in Sources */,
+				9FD605AA233A25ED0045A134 /* StretchHeaderFlowLayout.swift in Sources */,
 				9F42FD6823374BA0005D2F4D /* BaseViewController.swift in Sources */,
 				9F42FD5B23366859005D2F4D /* UIView + Layout.swift in Sources */,
 				9F42FD632336A47B005D2F4D /* PostsResponse.swift in Sources */,
