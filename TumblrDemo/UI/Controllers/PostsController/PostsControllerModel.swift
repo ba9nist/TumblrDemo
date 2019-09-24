@@ -12,8 +12,8 @@ protocol ImageCellDelegate {
     
 }
 
-typealias PostCellConfigurator = CollectionViewConfigurator<PostCollectionViewCell, Post, PostCellDelegate>
-typealias ImageCellConfigurator = CollectionViewConfigurator<ImageCollectionViewCell, URL, ImageCellDelegate>
+typealias PostCellConfigurator = CollectionViewConfigurator<PostCollectionViewCell, Post>
+typealias ImageCellConfigurator = CollectionViewConfigurator<ImageCollectionViewCell, URL>
 
 class PostsControllerModel {
 
@@ -24,8 +24,9 @@ class PostsControllerModel {
     private var searchModel: String = "gif"
     private var lastPostTimestamp: Int = 0
 
+    private var isLoading = false
     func fetchPosts(by tag: String? = nil, appending: Bool = false) {
-
+        guard !isLoading else { return }
         if let tag = tag, !tag.isEmpty {
             searchModel = tag
         }
@@ -37,10 +38,11 @@ class PostsControllerModel {
         if !appending {
             view?.showLoader()
         }
-        
+
+        isLoading = true
         NetworkManager.shared.sendRequest(model: tagsRequest, handler: TagsResponse()) { (postList, error) in
+            self.isLoading = false
             guard error == nil else {
-                print(error)
                 self.view?.hideLoader()
                 return
             }
@@ -84,36 +86,5 @@ class PostsControllerModel {
 
         return post.trail?.first?.blog
     }
-
-//    func fetchPosts(by tag: String = "featured") {
-////        let tagsRequest = TagsRequestModel(tag: tag, offset: offset)
-//        let postRequest = BlogPostsRequestModel(blogId: "themsleeves.tumblr.com")
-//        view?.showLoader()
-//        NetworkManager.shared.sendRequest(model: postRequest, handler: PostsResponse()) { (response, error) in
-//            guard error == nil else {
-////                view?.showError(message: error?.localizedDescription)
-//                self.view?.hideLoader()
-//                print(error)
-//                return
-//            }
-//
-//            guard let response = response else {
-//                self.view?.hideLoader()
-//                return
-//            }
-//
-//            let mappedPosts = response.posts.map({ (post) -> CellConfigurator in
-//                return PostCellConfigurator(item: post)
-//            })
-//
-//            self.posts.append(contentsOf: mappedPosts)
-//
-//            self.view?.hideLoader()
-//
-//            self.view?.updateTable()
-//            response.posts.forEach({print("type: \($0.type)  layout: \($0.trail?.first?.blog)")})
-//        }
-//    }
-
 
 }

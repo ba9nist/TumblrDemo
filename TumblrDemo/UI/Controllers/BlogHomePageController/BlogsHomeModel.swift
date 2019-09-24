@@ -31,20 +31,22 @@ class BlogsHomeModel {
                     return
                 }
 
-                print(response)
+                
             }
         }
     }
 
+    private var isLoading = false
     func loadBlogPosts(offset: Int = 0, appending: Bool = false) {
-        guard let blog = blog else { return }
+        guard let blog = blog, !isLoading else { return }
 
         if !appending {
             view?.showLoader()
         }
-
+        isLoading = true
         let blogsRequest = BlogPostsRequestModel(blogName: blog.name)
         NetworkManager.shared.sendRequest(model: blogsRequest, handler: PostsResponse()) { (response, error) in
+            self.isLoading = false
             guard error == nil else {
                 self.view?.hideLoader()
                 return

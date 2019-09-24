@@ -10,11 +10,24 @@ import UIKit
 import FLAnimatedImage
 
 class ImageCollectionViewCell: UICollectionViewCell, ConfigurableCell {
+    private var gradientLayer: CAGradientLayer?
+    private lazy var gradientView: UIView = {
+        let view = UIView()
+
+        gradientLayer  = CAGradientLayer()
+        gradientLayer?.colors = [R.color.gradientStart()!.cgColor, R.color.gradientEnd()!.cgColor]
+        gradientLayer?.type = .axial
+        gradientLayer?.startPoint = CGPoint(x: 0, y: 1)
+        gradientLayer?.endPoint = CGPoint(x: 1, y: 0)
+
+        view.layer.addSublayer(gradientLayer!)
+
+        return view
+    }()
 
     private let imageView: FLAnimatedImageView = {
         let imageView = FLAnimatedImageView()
         imageView.contentMode = UIImageView.ContentMode.scaleAspectFit
-
         return imageView
     }()
 
@@ -23,7 +36,6 @@ class ImageCollectionViewCell: UICollectionViewCell, ConfigurableCell {
         self.url = url
         imageView.image = nil
         imageView.animatedImage = nil
-
 
         NetworkManager.shared.loadImage(url: url) { (imageData) in
             guard let imageData = imageData else {
@@ -46,14 +58,18 @@ class ImageCollectionViewCell: UICollectionViewCell, ConfigurableCell {
 
     }
 
-    func configure(delegate: ImageCellDelegate?) {
-
-    }
-
     private func setupView() {
+        addSubview(gradientView)
         addSubview(imageView)
 
         imageView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
+        gradientView.anchor(top: imageView.topAnchor, left: imageView.leftAnchor, bottom: imageView.bottomAnchor, right: imageView.rightAnchor)
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        gradientLayer?.frame = gradientView.frame
     }
 
     func calculateHeight(for width: CGFloat) -> CGFloat {

@@ -57,11 +57,6 @@ class PostsController: BaseViewController {
         super.viewDidLoad()
 
         setupView()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
         model.fetchPosts()
     }
 
@@ -131,6 +126,7 @@ extension PostsController: PostsControllerViewProcotol {
     func reloadTable() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+            self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
         }
     }
 

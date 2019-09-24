@@ -53,10 +53,6 @@ class PostCollectionViewCell: UICollectionViewCell, ConfigurableCell {
         }
     }
 
-    func configure(delegate: PostCellDelegate?) {
-        self.delegate = delegate
-    }
-
     func configure(data post:  Post) {
         resetView()
 

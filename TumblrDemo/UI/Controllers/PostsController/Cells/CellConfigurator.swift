@@ -10,10 +10,8 @@ import UIKit
 
 protocol ConfigurableCell {
     associatedtype T
-    associatedtype D
     
     func configure(data: T)
-    func configure(delegate: D?)
     func calculateHeight(for width: CGFloat) -> CGFloat
 }
 
@@ -24,7 +22,7 @@ protocol CellConfigurator {
     func calculateHeight(width: CGFloat) -> CGFloat
 }
 
-class CollectionViewConfigurator<CellType: ConfigurableCell, U, D> : CellConfigurator where CellType.D == D, CellType.T == U, CellType: UICollectionViewCell {
+class CollectionViewConfigurator<CellType: ConfigurableCell, U> : CellConfigurator where CellType.T == U, CellType: UICollectionViewCell {
     static var reuseIdentifier: String { return String(describing: CellType.self) }
     
     let item: U
@@ -37,10 +35,6 @@ class CollectionViewConfigurator<CellType: ConfigurableCell, U, D> : CellConfigu
     
     func configure(cell: UIView) {
         (cell as! CellType).configure(data: item)
-    }
-
-    func configure(delegate: D?) {
-        cell.configure(delegate: delegate)
     }
 
     func calculateHeight(width: CGFloat) -> CGFloat {
