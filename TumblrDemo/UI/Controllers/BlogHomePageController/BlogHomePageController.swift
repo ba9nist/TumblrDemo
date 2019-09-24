@@ -114,16 +114,42 @@ extension BlogHomePageController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath) as! StrechyHeaderView
 
-        var avatarModel: BlogAvatarRequest?
-        if let name = blog?.name {
-            avatarModel = BlogAvatarRequest(blogName: name, size: 96)
-        }
 
-        let url = URL(string: avatarModel?.getUrl() ?? "")
-        header.configure(with: blog?.theme, avatarUrl: url)
+        header.configure(with: blog?.theme, avatarUrl: getAvatarUrl())
+        header.delegate = self
         return header
     }
 
+    fileprivate func getAvatarUrl(size: Int = 96) -> URL? {
+        var avatarModel: BlogAvatarRequest?
+        if let name = blog?.name {
+            avatarModel = BlogAvatarRequest(blogName: name, size: size)
+        }
+
+        let url = URL(string: avatarModel?.getUrl() ?? "")
+        return url
+    }
+
+}
+
+extension BlogHomePageController: StrechyHeaderViewDelegate {
+    func didClickOnAvatarImage(_ header: StrechyHeaderView) {
+
+        print("didClickOnAvatarImage")
+//        if let frame = header.convert(header.avatarImageView.frame, to: nil) {
+let frame = header.convert(header.avatarImageView.frame, to: nil)
+            let url = getAvatarUrl()
+            let finalUrl = getAvatarUrl(size: 512)
+            let overlayView = OverlayImageView(frame: view.frame)
+
+            print(frame)
+
+            overlayView.configure(with: frame, initial: url, finalUrl: finalUrl)
+
+            view.addSubview(overlayView)
+//        }
+
+    }
 }
 
 extension BlogHomePageController: BlogHomePageViewProtocol {

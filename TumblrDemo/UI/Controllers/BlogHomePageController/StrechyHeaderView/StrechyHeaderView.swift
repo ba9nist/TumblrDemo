@@ -9,6 +9,10 @@
 import UIKit
 import FLAnimatedImage
 
+protocol StrechyHeaderViewDelegate: class {
+    func didClickOnAvatarImage(_ view: StrechyHeaderView)
+}
+
 class StrechyHeaderView: UICollectionReusableView {
 
     private var imageView: FLAnimatedImageView = {
@@ -18,18 +22,22 @@ class StrechyHeaderView: UICollectionReusableView {
         return imageView
     }()
 
-    private var avatarImageView: UIImageView = {
+    public lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
+        imageView.isUserInteractionEnabled = true
         imageView.contentMode = .scaleAspectFill
         imageView.layer.borderWidth = 2
         imageView.layer.borderColor = UIColor.white.cgColor
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(avatarImageClicked))
+        imageView.addGestureRecognizer(tapGesture)
         return imageView
     }()
 
     private var theme: Theme?
 
-    open var animator: UIViewPropertyAnimator?
+    public weak var delegate: StrechyHeaderViewDelegate?
     open func configure(with theme: Theme?, avatarUrl: URL?) {
         self.theme = theme
 
@@ -60,6 +68,10 @@ class StrechyHeaderView: UICollectionReusableView {
                 break
             }
         }
+    }
+
+    @objc func avatarImageClicked() {
+        delegate?.didClickOnAvatarImage(self)
     }
 
     override func layoutSubviews() {
