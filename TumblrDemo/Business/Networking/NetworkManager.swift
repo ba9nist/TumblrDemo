@@ -42,29 +42,15 @@ class NetworkManager: NSObject {
 
                             let result = try JSONDecoder().decode(TumblrResponse<T>.self, from: data)
                             completion(result.response as T, nil)
-//                            print(result.response)
-//                            print(result.response.posts)
-//                            completion(result.response, nil)
                         } catch {
                             print("decoding error")
                             completion(nil, error)
                         }
                     }
-//                    self.processResponse()
-//                    processResponse(response)
-//                    let result = try JSONDecoder().decode(Response.self, from: data)
-//                    completion(response.response)
+
                 case let .failure(error):
                     completion(nil, error)
                 }
-
-//                do {
-//
-//
-//                } catch {
-//                    print(error)
-//                    completion(nil)
-//                }
         }
     }
 
@@ -77,7 +63,6 @@ class NetworkManager: NSObject {
         }
 
         Alamofire.request(url).responseData { response in
-//            print("finish image request")
 
             if let imageData =  response.result.value {
                 self.cache.setObject(imageData as NSData, forKey: url as NSURL)

@@ -47,19 +47,16 @@ class BaseRequestModel {
     }
 }
 
-class BlogPostsRequestModel: BaseRequestModel {
+class BlogPostsRequestModel: BlogRequestModel {
     enum BlogPostKeys: ApiKey {
-        case blogIdentifier = "blog_identifier"
         case offset
         case tag
     }
 
-    private var urlPath: String = ""
+    private let urlPath: String = "posts"
 
-    init(blogId: String, offset: Int = 0, tag: String = "") {
-        super.init()
-
-        urlPath = "blog/\(blogId)/posts"
+    init(blogName: String, offset: Int = 0, tag: String = "") {
+        super.init(blogName: blogName)
 
         params[BlogPostKeys.offset.rawValue] = offset == 0 ? nil : String(offset)
         params[BlogPostKeys.tag.rawValue] = tag.isEmpty ? nil : tag
@@ -69,6 +66,63 @@ class BlogPostsRequestModel: BaseRequestModel {
         return super.getUrl(urlPath)
     }
 
+}
+
+class BlogAvatarRequest: BlogRequestModel {
+    private var url = "avatar"
+
+    public let sizes = [16, 24, 30, 40, 48, 64, 96, 128, 512]
+    init(blogName: String, size: Int = 128) {
+        super.init(blogName: blogName)
+
+        var actualSize = 128
+        if sizes.contains(size) {
+            actualSize = size
+        }
+
+        url.append("/\(actualSize)")
+    }
+
+    override func getUrl(_ appendingPath: String? = nil) -> String {
+        return super.getUrl(url)
+    }
+
+}
+
+class BlogInfoRequestModel: BlogRequestModel {
+
+    private let urlMethod = "info"
+
+    override init(blogName: String) {
+        super.init(blogName: blogName)
+    }
+
+    override func getUrl(_ appendingPath: String? = nil) -> String {
+        return super.getUrl(urlMethod)
+    }
+}
+
+class BlogRequestModel: BaseRequestModel {
+    enum BlogKeys: ApiKey {
+        case blogIdentifier = "blog_identifier"
+    }
+
+    private var urlPath: String = ""
+
+    init(blogName: String) {
+        super.init()
+        urlPath = "blog/\(blogName).tumblr.com"
+    }
+
+    override func getUrl(_ appendingPath: String? = nil) -> String {
+        var path = urlPath
+        if let appendingPath = appendingPath {
+            path.append("/")
+            path.append(appendingPath)
+        }
+
+        return super.getUrl(path)
+    }
 }
 
 class TagsRequestModel: BaseRequestModel {

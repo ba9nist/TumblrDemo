@@ -63,7 +63,15 @@ class BlogHomePageController: BaseViewController {
     }
 
     private func loadAdditionalInfo() {
-        
+        if let blogName = blog?.name {
+            
+        }
+
+        if let identifier = blog?.uuid {
+            let infoModel = BlogInfoRequestModel(blogName: identifier)
+
+//            NetworkManager.shared.sendRequest(model: infoModel, handler: <#T##Decodable#>, completion: <#T##(Decodable?, Error?) -> Void#>)
+        }
     }
 }
 
@@ -93,7 +101,13 @@ extension BlogHomePageController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath) as! StrechyHeaderView
 
-        header.configure(with: blog?.theme)
+        var avatarModel: BlogAvatarRequest?
+        if let name = blog?.name {
+            avatarModel = BlogAvatarRequest(blogName: name, size: 96)
+        }
+
+        let url = URL(string: avatarModel?.getUrl() ?? "")
+        header.configure(with: blog?.theme, avatarUrl: url)
         return header
     }
 
