@@ -74,15 +74,22 @@ class BlogPostsRequestModel: BaseRequestModel {
 class TagsRequestModel: BaseRequestModel {
     enum TagsKeys: ApiKey {
         case tag
-        case offset
+        case timestamp = "before"
+        case featuredTimestamp = "featured_timestamp"
     }
 
     private var urlPath = "tagged"
 
-    init(tag: String, offset: Int = 0) {
+    init(tag: String, timestamp: Int = 0) {
         super.init()
+        
         params[TagsKeys.tag.rawValue] = tag
-        params[TagsKeys.offset.rawValue] = offset == 0 ? nil : String(offset)
+        if tag == "featured" {
+            params[TagsKeys.featuredTimestamp.rawValue] = String(timestamp)
+        } else {
+            params[TagsKeys.timestamp.rawValue] = String(timestamp)
+        }
+
     }
 
     override func getUrl(_ appendingPath: String? = nil) -> String {

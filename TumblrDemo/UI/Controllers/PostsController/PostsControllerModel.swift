@@ -16,18 +16,20 @@ class PostsControllerModel {
     var posts = [CellConfigurator]()
     var view: PostsControllerViewProcotol?
 
-    var searchModel: String = "featured"
+    private var searchModel: String = "gif"
+    private var lastPostTimestamp: Int = 0
 
-    func fetchPosts(by tag: String? = nil, offset: Int = 0, silentLoad: Bool = false) {
+    func fetchPosts(by tag: String? = nil, appending: Bool = false) {
 
         if let tag = tag, !tag.isEmpty {
             searchModel = tag
         }
 
-        let tagsRequest = TagsRequestModel(tag: searchModel, offset: offset)
+        let tagsRequest = appending ? TagsRequestModel(tag: searchModel, timestamp: lastPostTimestamp) : TagsRequestModel(tag: searchModel)
         print(tagsRequest.getUrl())
 
-        if !silentLoad {
+
+        if !appending {
             view?.showLoader()
         }
         
@@ -43,19 +45,30 @@ class PostsControllerModel {
                 return
             }
 
-            if !silentLoad {
+            if !appending {
                 self.posts = [CellConfigurator]()
             }
+
+            self.lastPostTimestamp = postList[postList.count - 1].timestamp
 
             let mappedPosts = postList.map({ (post) -> CellConfigurator in
                 return PostCellConfigurator(item: post)
             })
 
+            let previoutPostsCount = self.posts.count
             self.posts.append(contentsOf: mappedPosts)
 
             self.view?.hideLoader()
 
-            self.view?.updateTable()
+            if appending {
+                var indexPaths = [IndexPath]()
+                for index in previoutPostsCount..<previoutPostsCount + mappedPosts.count {
+                    indexPaths.append(IndexPath(item: index, section: 0))
+                }
+                self.view?.insertItems(indexPaths)
+            } else {
+                self.view?.reloadTable()
+            }
         }
     }
 

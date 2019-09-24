@@ -26,6 +26,7 @@ struct Post: Decodable {
     var type: String
     var blog_name: String
     var id: Int64
+    var timestamp: Int
     var tags: [String]
     var format: String //html....
     var note_count: Int

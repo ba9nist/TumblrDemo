@@ -12,9 +12,11 @@ protocol PostsControllerViewProcotol {
 
     func showLoader()
     func hideLoader()
-    func updateTable()
-    func showError(message: String)
 
+    func reloadTable()
+    func insertItems(_ indexPaths: [IndexPath])
+
+    func showError(message: String)
 }
 
 class PostsController: BaseViewController {
@@ -118,8 +120,13 @@ extension PostsController: PostsControllerViewProcotol {
         
     }
 
+    func insertItems(_ indexPaths: [IndexPath]) {
+        DispatchQueue.main.async {
+            self.collectionView.insertItems(at: indexPaths)
+        }
+    }
 
-    func updateTable() {
+    func reloadTable() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
@@ -132,7 +139,7 @@ extension PostsController: PostsControllerViewProcotol {
 extension PostsController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         if let path = indexPaths.last, path.item == model.posts.count - 3 {
-            model.fetchPosts(offset: model.posts.count, silentLoad: true)
+            model.fetchPosts(appending: true)
         }
     }
 
