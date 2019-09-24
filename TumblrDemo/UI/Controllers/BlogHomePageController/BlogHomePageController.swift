@@ -130,7 +130,6 @@ extension BlogHomePageController: BlogHomePageViewProtocol {
     func reloadTable() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
-            self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
         }
     }
 
