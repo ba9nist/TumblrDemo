@@ -9,13 +9,15 @@
 import Foundation
 
 
+typealias BlogInfoConfigurator = CollectionViewConfigurator<BlogInfoCell, Blog>
+
 class BlogsHomeModel {
 
     open weak var view: BlogHomePageViewProtocol?
     open var blog: Blog? {
         didSet {
             loadBlogInfo()
-            loadBlogPosts()
+            loadBlogPosts(appending: true)
         }
     }
 
@@ -31,9 +33,19 @@ class BlogsHomeModel {
                     return
                 }
 
-                
+                guard let blog = response?.blog else { return }
+
+                let post = BlogInfoConfigurator(item: blog)
+
+                self.posts.insert(post, at: 0)
+                self.view?.reloadTable()
             }
         }
+    }
+
+    private func updateBlogInfo(with update: Blog) {
+        blog?.title = update.title
+        blog?.description = update.description
     }
 
     private var isLoading = false
@@ -61,13 +73,13 @@ class BlogsHomeModel {
                 return PostCellConfigurator(item: post)
             })
 
+            let previoutPostsCount = self.posts.count
 
             if !appending {
                 self.posts = [CellConfigurator]()
                 self.rawPosts = [Post]()
             }
 
-            let previoutPostsCount = self.posts.count
             self.posts.append(contentsOf: mappedPosts)
             self.rawPosts.append(contentsOf: list)
 

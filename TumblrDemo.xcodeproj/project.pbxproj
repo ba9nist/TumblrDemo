@@ -35,6 +35,7 @@
 		9FEE48F6233A90AE007CAA59 /* BlogsHomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE48F5233A90AE007CAA59 /* BlogsHomeModel.swift */; };
 		9FEE48F8233A9C37007CAA59 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE48F7233A9C37007CAA59 /* UIColor+Hex.swift */; };
 		9FEE48FA233AB867007CAA59 /* OverlayImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE48F9233AB867007CAA59 /* OverlayImageView.swift */; };
+		9FEE48FC233ACE40007CAA59 /* BlogInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE48FB233ACE40007CAA59 /* BlogInfoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		9FEE48F5233A90AE007CAA59 /* BlogsHomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogsHomeModel.swift; sourceTree = "<group>"; };
 		9FEE48F7233A9C37007CAA59 /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		9FEE48F9233AB867007CAA59 /* OverlayImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayImageView.swift; sourceTree = "<group>"; };
+		9FEE48FB233ACE40007CAA59 /* BlogInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogInfoCell.swift; sourceTree = "<group>"; };
 		A91AF3A2B0094C6EF0407F72 /* Pods-TumblrDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TumblrDemo.debug.xcconfig"; path = "Target Support Files/Pods-TumblrDemo/Pods-TumblrDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C4345F5DB048E77EE12FF050 /* Pods-TumblrDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TumblrDemo.release.xcconfig"; path = "Target Support Files/Pods-TumblrDemo/Pods-TumblrDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -277,6 +279,7 @@
 		9FEE48F4233A8D53007CAA59 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				9FEE48FB233ACE40007CAA59 /* BlogInfoCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				9FD605AA233A25ED0045A134 /* StretchHeaderFlowLayout.swift in Sources */,
 				9F42FD6823374BA0005D2F4D /* BaseViewController.swift in Sources */,
 				9F42FD5B23366859005D2F4D /* UIView + Layout.swift in Sources */,
+				9FEE48FC233ACE40007CAA59 /* BlogInfoCell.swift in Sources */,
 				9F42FD632336A47B005D2F4D /* PostsResponse.swift in Sources */,
 				9FEE48FA233AB867007CAA59 /* OverlayImageView.swift in Sources */,
 				9FD6058C2337D81B0045A134 /* PhotosGridView.swift in Sources */,

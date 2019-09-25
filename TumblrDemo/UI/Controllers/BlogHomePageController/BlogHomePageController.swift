@@ -32,6 +32,7 @@ class BlogHomePageController: BaseViewController {
 
         collectionView.backgroundColor = .white
         collectionView.register(PostCollectionViewCell.self, forCellWithReuseIdentifier: PostCellConfigurator.reuseIdentifier)
+        collectionView.register(BlogInfoCell.self, forCellWithReuseIdentifier: BlogInfoConfigurator.reuseIdentifier)
         collectionView.register(StrechyHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerReuseIdentifier)
 
         return collectionView
