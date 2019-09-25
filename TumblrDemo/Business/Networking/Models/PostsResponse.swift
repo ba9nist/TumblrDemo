@@ -16,6 +16,7 @@ struct Meta: Decodable {
 struct Theme: Decodable {
     var avatar_shape: String
     var background_color: String
+    var title_color: String?
     var body_font: String
 
     var header_image: URL?

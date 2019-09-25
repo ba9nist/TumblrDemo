@@ -53,8 +53,7 @@ class BlogHomePageController: BaseViewController {
         setupNavigation()
 
         view.addSubview(collectionView)
-        collectionView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor
-            , right: view.rightAnchor)
+        collectionView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
 
         setupTheme()
     }
@@ -63,15 +62,8 @@ class BlogHomePageController: BaseViewController {
 //        print(blog?.theme)
         guard let theme = blog?.theme else { return }
 
-        var rawColor = theme.background_color
-        rawColor.remove(at: rawColor.startIndex)
+        collectionView.backgroundColor = UIColor(htmlStyle: theme.background_color)
 
-        print("rawColor = \(rawColor)")
-        if let colorInt = Int(rawColor, radix: 16) {
-            print(colorInt)
-            collectionView.backgroundColor = UIColor(hexRgb: colorInt)
-        }
-        
     }
 
     private func setupNavigation() {
@@ -135,19 +127,16 @@ extension BlogHomePageController: UICollectionViewDataSource {
 extension BlogHomePageController: StrechyHeaderViewDelegate {
     func didClickOnAvatarImage(_ header: StrechyHeaderView) {
 
-        print("didClickOnAvatarImage")
-//        if let frame = header.convert(header.avatarImageView.frame, to: nil) {
-let frame = header.convert(header.avatarImageView.frame, to: nil)
-            let url = getAvatarUrl()
-            let finalUrl = getAvatarUrl(size: 512)
-            let overlayView = OverlayImageView(frame: view.frame)
+        let frame = header.convert(header.avatarImageView.frame, to: nil)
+        let url = getAvatarUrl()
+        let finalUrl = getAvatarUrl(size: 512)
+        let overlayView = OverlayImageView(frame: view.frame)
 
-            print(frame)
+        print(frame)
 
-            overlayView.configure(with: frame, initial: url, finalUrl: finalUrl)
+        overlayView.configure(with: frame, initial: url, finalUrl: finalUrl)
 
-            view.addSubview(overlayView)
-//        }
+        view.addSubview(overlayView)
 
     }
 }
