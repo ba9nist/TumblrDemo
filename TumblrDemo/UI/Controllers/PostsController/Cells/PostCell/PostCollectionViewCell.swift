@@ -60,6 +60,7 @@ class PostCollectionViewCell: UICollectionViewCell, ConfigurableCell {
 
         if let blogInfo = post.trail?.first?.blog {
             headerView.blogTitleLabel.text = blogInfo.name
+            loadAvaterImage(blogName: blogInfo.name)
         }
 
         if let html = post.trail?.first?.content {
@@ -69,6 +70,18 @@ class PostCollectionViewCell: UICollectionViewCell, ConfigurableCell {
         if let photos = post.photos {
             photosGrid.pattern = post.photoset_layout ?? "1" //if have photos and no layout there so show only 1 photo
             photosGrid.images = photos
+        }
+    }
+
+    private func loadAvaterImage(blogName: String) {
+        let model = BlogAvatarRequest(blogName: blogName)
+
+        if let url = URL(string: model.getUrl()) {
+            NetworkManager.shared.loadImage(url: url)  { (imageData) in
+                guard let imageData = imageData, model.getUrl() == url.absoluteString else { return }
+
+                self.headerView.blogIconImageView.image = UIImage(data: imageData)
+            }
         }
     }
 

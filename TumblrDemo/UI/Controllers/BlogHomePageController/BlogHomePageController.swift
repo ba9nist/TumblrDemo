@@ -49,6 +49,7 @@ class BlogHomePageController: BaseViewController {
     }
 
     private func setupView() {
+        self.title = blog?.name
         setupNavigation()
 
         view.addSubview(collectionView)
@@ -80,7 +81,16 @@ class BlogHomePageController: BaseViewController {
         self.navigationController?.view.backgroundColor = UIColor.clear
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
         self.navigationController?.navigationBar.tintColor = .white
+    }
 
+    fileprivate func getAvatarUrl(size: Int = 96) -> URL? {
+        var avatarModel: BlogAvatarRequest?
+        if let name = blog?.name {
+            avatarModel = BlogAvatarRequest(blogName: name, size: size)
+        }
+
+        let url = URL(string: avatarModel?.getUrl() ?? "")
+        return url
     }
 
 }
@@ -118,16 +128,6 @@ extension BlogHomePageController: UICollectionViewDataSource {
         header.configure(with: blog?.theme, avatarUrl: getAvatarUrl())
         header.delegate = self
         return header
-    }
-
-    fileprivate func getAvatarUrl(size: Int = 96) -> URL? {
-        var avatarModel: BlogAvatarRequest?
-        if let name = blog?.name {
-            avatarModel = BlogAvatarRequest(blogName: name, size: size)
-        }
-
-        let url = URL(string: avatarModel?.getUrl() ?? "")
-        return url
     }
 
 }
